@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Sort({ items }) {
+const sortPopup = React.memo(function Sort({ items }) {
   const [visiblePopup, setVisiblePopup] = React.useState(false);
   const [activeItem, setActivItem] = React.useState(0);
   const sortRef = React.useRef();
@@ -62,6 +62,6 @@ function Sort({ items }) {
       )}
     </div>
   );
-}
+});
 
-export default Sort;
+export default sortPopup;
