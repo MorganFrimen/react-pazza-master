@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setCategory } from '../redux/action/filtrs';
 
+import { fetchPizzas } from '../redux/action/pizzas';
+
 const categoriesName = ['Мясные', 'Вегитарианская', 'Гриль', 'Острые', 'Закрытые'];
 const sortItems = [
   { name: 'Популярности', type: 'popular' },
@@ -15,6 +17,11 @@ const sortItems = [
 function Home() {
   const dispatch = useDispatch();
   const items = useSelector(({ pizzas }) => pizzas.items);
+  const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
+
+  React.useEffect(() => {
+    dispatch(fetchPizzas());
+  }, [dispatch]);
 
   const onSelectCategory = React.useCallback(
     (index) => {
@@ -31,7 +38,7 @@ function Home() {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {items && items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
+        {isLoaded && items.map((obj) => <PizzaBlock key={obj.id} isLoaded={true} {...obj} />)}
       </div>
     </div>
   );
