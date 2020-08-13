@@ -1,5 +1,5 @@
 import React from 'react';
-import { Categories, Sort, PizzaBlock } from '../components';
+import { Categories, Sort, PizzaBlock, MyLoader } from '../components';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -38,7 +38,9 @@ function Home() {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {isLoaded && items.map((obj) => <PizzaBlock key={obj.id} isLoaded={true} {...obj} />)}
+        {isLoaded
+          ? items.map((obj) => <PizzaBlock key={obj.id} isLoading={true} {...obj} />)
+          : Array(10).fill(<MyLoader />)}
       </div>
     </div>
   );

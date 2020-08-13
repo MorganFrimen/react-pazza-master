@@ -10,10 +10,6 @@ function PizzaBlock({ imageUrl, name, price, types, sizes, isLoading }) {
   const [activeType, setactiveType] = React.useState(types[0]);
   const [activeSize, setactiveSize] = React.useState(sizes[0]);
 
-  if (isLoading) {
-    return <MyLoader />;
-  }
-
   const onSelectType = (index) => {
     setactiveType(index);
   };
@@ -82,7 +78,6 @@ PizzaBlock.propTypes = {
   price: PropTypes.number.isRequired,
   types: PropTypes.arrayOf(PropTypes.number).isRequired,
   sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
-  isLoading: PropTypes.bool,
 };
 
 PizzaBlock.defaultProps = {
