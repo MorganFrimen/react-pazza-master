@@ -18,7 +18,7 @@ function Home() {
   const dispatch = useDispatch();
   const items = useSelector(({ pizzas }) => pizzas.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
-  const { category, sortBy } = useSelector(({ filtrs }) => filtrs);
+  const { category } = useSelector(({ filtrs }) => filtrs);
 
   React.useEffect(() => {
     dispatch(fetchPizzas());

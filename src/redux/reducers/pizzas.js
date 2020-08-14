@@ -15,12 +15,6 @@ const pizzas = (state = initialState, action) => {
         ...state,
         isLoaded: action.payload,
       };
-
-    case 'SET_CATEGORY':
-      return {
-        ...state,
-        category: action.payload,
-      };
     default:
       return state;
   }
