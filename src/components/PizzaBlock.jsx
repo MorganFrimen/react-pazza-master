@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import MyLoader from './Loader';
 
 function PizzaBlock({ imageUrl, name, price, types, sizes, isLoading }) {
   const availableNames = ['тонкое', 'традиционное'];
