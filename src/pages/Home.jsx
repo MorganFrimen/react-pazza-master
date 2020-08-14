@@ -18,10 +18,11 @@ function Home() {
   const dispatch = useDispatch();
   const items = useSelector(({ pizzas }) => pizzas.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
+  const { category, sortBy } = useSelector(({ filtrs }) => filtrs);
 
   React.useEffect(() => {
     dispatch(fetchPizzas());
-  }, [dispatch]);
+  }, [dispatch, category]);
 
   const onSelectCategory = React.useCallback(
     (index) => {
@@ -33,14 +34,20 @@ function Home() {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories onClickItem={onSelectCategory} items={categoriesName} />
+        <Categories
+          activeCategory={category}
+          onClickCategory={onSelectCategory}
+          items={categoriesName}
+        />
         <Sort onClickItem={(name) => name} items={sortItems} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
         {isLoaded
           ? items.map((obj) => <PizzaBlock key={obj.id} isLoading={true} {...obj} />)
-          : Array(10).fill(<MyLoader />)}
+          : Array(10)
+              .fill(0)
+              .map((_, index) => <MyLoader key={index} />)}
       </div>
     </div>
   );
