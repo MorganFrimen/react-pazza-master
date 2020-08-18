@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Categories = React.memo(function Categories({ activeCategory, items, onClickCategory }) {
   return (
@@ -25,4 +26,14 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
   );
 });
 
+Categories.propTypes = {
+  activeCategory: PropTypes.number.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object),
+  onClickCategory: PropTypes.func,
+};
+
+Categories.defaultProps = {
+  items: [],
+  activeCategory: null,
+};
 export default Categories;
