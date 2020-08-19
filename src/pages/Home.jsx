@@ -11,7 +11,7 @@ const categoriesName = ['Мясные', 'Вегитарианская', 'Гри�
 const sortItems = [
   { name: 'Популярности', type: 'popular' },
   { name: 'Цене', type: 'price' },
-  { name: 'Алфавиту', type: 'alphabet' },
+  { name: 'Алфавиту', type: 'name' },
 ];
 
 function Home() {
