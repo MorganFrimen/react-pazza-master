@@ -8,7 +8,9 @@ const cart = (state = initialState, action) => {
     case 'SET_TOTAL_PRICE':
       return {
         ...state,
-        totalPrice: action.payload,
+        items: {
+          [action.payload.id]: [...state.items[action.payload.id], action.payload],
+        },
       };
 
     case 'SET_TOTAL_COUNT':
