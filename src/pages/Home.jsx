@@ -7,6 +7,8 @@ import { setCategory, setSortBy } from '../redux/action/filtrs';
 
 import { fetchPizzas } from '../redux/action/pizzas';
 
+import { addPizzaToCart } from '../redux/action/cart';
+
 const categoriesName = ['Мясные', 'Вегитарианская', 'Гриль', 'Острые', 'Закрытые'];
 const sortItems = [
   { name: 'Популярности', type: 'popular' },
@@ -38,6 +40,13 @@ function Home() {
     [dispatch],
   );
 
+  const handleAddPizzaToCart = (obj) => {
+    dispatch({
+      type: 'ADD_PIZZA_CART',
+      payload: obj,
+    });
+  };
+
   return (
     <div className="container">
       <div className="content__top">
@@ -58,7 +67,7 @@ function Home() {
         {isLoaded
           ? items.map((obj) => (
               <PizzaBlock
-                onClickAddPizza={() => alert(123)}
+                onClickAddPizza={handleAddPizzaToCart}
                 key={obj.id}
                 isLoading={true}
                 {...obj}

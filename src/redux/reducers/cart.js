@@ -5,11 +5,14 @@ const initialState = {
 };
 const cart = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_TOTAL_PRICE':
+    case 'ADD_PIZZA_CART':
       return {
         ...state,
         items: {
-          [action.payload.id]: [...state.items[action.payload.id], action.payload],
+          ...state.items,
+          [action.payload.id]: !state.items[action.payload.id]
+            ? [action.payload]
+            : [...state.items[action.payload.id], action.payload],
         },
       };
 
