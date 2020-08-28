@@ -3,8 +3,8 @@ import { CartItems } from '../components';
 import imgCart from '../assets/img/empty-cart.png';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCart } from '../redux/action/cart';
 import { Link } from 'react-router-dom';
+import { clearCart, removeCartItem } from '../redux/action/cart';
 
 function Cart() {
   const dispatch = useDispatch();
@@ -15,6 +15,12 @@ function Cart() {
   const onClearCart = () => {
     if (window.confirm('Вы действительно хотите очистить корзину?')) {
       dispatch(clearCart());
+    }
+  };
+
+  const onRemoveItem = (id) => {
+    if (window.confirm('Вы действительно хотите удалить пиццу?')) {
+      dispatch(removeCartItem(id));
     }
   };
   return (
@@ -96,12 +102,14 @@ function Cart() {
           <div className="content__items">
             {addedPizzas.map((obj) => (
               <CartItems
+                id={obj.id}
                 name={obj.name}
                 type={obj.type}
                 size={obj.size}
                 imageUrl={obj.imageUrl}
                 totalPrice={items[obj.id].totalPrice}
                 totalCount={items[obj.id].items.length}
+                onRemove={onRemoveItem}
               />
             ))}
           </div>
@@ -141,9 +149,7 @@ function Cart() {
         </div>
       ) : (
         <div className="cart cart--empty">
-          <h2>
-            Корзина пустая <icon>😕</icon>
-          </h2>
+          <h2>Корзина пустая</h2>
           <p>
             Вероятней всего, вы не заказывали ещё пиццу.
             <br />

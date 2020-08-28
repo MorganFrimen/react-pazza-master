@@ -37,6 +37,16 @@ const cart = (state = initialState, action) => {
         totalCount: action.payload,
       };
 
+    case 'REMOVE_CART_PIZZA':
+      const newItemsPizza = {
+        ...state.items,
+      };
+      delete newItemsPizza[action.payload];
+      return {
+        ...state,
+        items: newItemsPizza,
+      };
+
     case 'CLEAR_CART_PIZZA': {
       return {
         items: {},
